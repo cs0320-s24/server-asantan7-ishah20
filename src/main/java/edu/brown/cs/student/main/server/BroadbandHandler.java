@@ -14,6 +14,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class BroadbandHandler implements Route{
+    /***
+     * BroadbandHandler that takes in the request and response
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
 
     @Override
     public Object handle(Request request, Response response) throws Exception {
@@ -39,6 +46,9 @@ public class BroadbandHandler implements Route{
         return responseMap;
     }
 
+    /**
+     * Sends request to API
+     */
     private String sendRequest(String state, String county) throws URISyntaxException, IOException, InterruptedException {
         String uriString = String.format("api.com", state, county);
 

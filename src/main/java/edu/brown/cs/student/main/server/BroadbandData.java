@@ -1,5 +1,8 @@
 package edu.brown.cs.student.main.server;
 
+/***
+ * Format of BroadbandData
+ */
 public class BroadbandData {
 
     private String state;
