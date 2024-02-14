@@ -5,6 +5,7 @@ import edu.brown.cs.student.main.csv.Exceptions.ColumnIndexOutOfBoundsException;
 import edu.brown.cs.student.main.csv.Exceptions.FactoryFailureException;
 import edu.brown.cs.student.main.csv.Exceptions.InvalidHeaderNameException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -106,5 +107,15 @@ public class CSVSearch<T> {
     }
 
     return false;
+  }
+
+  public List<List<String>> searchListOfString(List<List<String>> row, String value, Object columnIdentifier) throws ColumnIndexOutOfBoundsException, InvalidHeaderNameException {
+    List<List<String>> results = new ArrayList<>();
+    for (List<String> r : row) {
+      if (isMatch(r, value, columnIdentifier)) {
+        results.add(r);
+      }
+    }
+    return results;
   }
 }
