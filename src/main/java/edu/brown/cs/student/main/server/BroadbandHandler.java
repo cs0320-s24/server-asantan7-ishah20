@@ -24,12 +24,20 @@ public class BroadbandHandler implements Route{
 
     @Override
     public Object handle(Request request, Response response) throws Exception {
-        Set<String> params = request.queryParams();
 
         String state = request.queryParams("state");
         String county = request.queryParams("county");
 
+        String stateCode = CensusAPIHelper.fetchStateCode(state);
+        String countyCode = CensusAPIHelper.fetchCountyCode(state, county);
+
         Map<String, Object> responseMap = new HashMap<>();
+        if (stateCode == null || countyCode == null) {
+            responseMap.put("result", "error");
+            responseMap.put("msg", "invalid state county");
+            return responseMap;
+        }
+
         try {
             String broadbandJson = this.sendRequest(state, county);
 
