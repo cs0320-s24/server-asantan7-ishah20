@@ -37,6 +37,7 @@
       <artifactId>moshi</artifactId>
       <version>1.13.0</version>
     </dependency>
+
     <dependency>
       <groupId>com.squareup.moshi</groupId>
       <artifactId>moshi-adapters</artifactId>
@@ -149,6 +150,7 @@
           </execution>
         </executions>
       </plugin>
+
 
       <!--
             We use SortPom to apply ordering and formatting to this pom.xml file.
