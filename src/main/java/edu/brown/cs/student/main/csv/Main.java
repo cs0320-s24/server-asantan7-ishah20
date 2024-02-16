@@ -55,7 +55,8 @@ public final class Main {
 
         String csvFilePath = ROOT_PATH + csvFileName;
         try (FileReader fileReader = new FileReader(csvFilePath)) {
-          CreatorFromRow<List<String>> creator = new edu.brown.cs.student.main.csv.CreatorFromRowExamples.SimpleCreator();
+          CreatorFromRow<List<String>> creator =
+              new edu.brown.cs.student.main.csv.CreatorFromRowExamples.SimpleCreator();
           CSVParser<List<String>> parser = new CSVParser<>(fileReader, creator, hasHeaders);
           CSVSearch<List<String>> csvSearch = new CSVSearch<>(parser, creator);
 

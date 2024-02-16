@@ -109,7 +109,9 @@ public class CSVSearch<T> {
     return false;
   }
 
-  public List<List<String>> searchListOfString(List<List<String>> row, String value, Object columnIdentifier) throws ColumnIndexOutOfBoundsException, InvalidHeaderNameException {
+  public List<List<String>> searchListOfString(
+      List<List<String>> row, String value, Object columnIdentifier)
+      throws ColumnIndexOutOfBoundsException, InvalidHeaderNameException {
     List<List<String>> results = new ArrayList<>();
     for (List<String> r : row) {
       if (isMatch(r, value, columnIdentifier)) {

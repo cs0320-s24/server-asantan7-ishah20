@@ -1,7 +1,6 @@
 package edu.brown.cs.student.main.csv.CreatorFromRowExamples.Student;
 
 import edu.brown.cs.student.main.csv.CreatorFromRowExamples.CreatorFromRow;
-import edu.brown.cs.student.main.csv.CreatorFromRowExamples.Student.Student;
 import java.util.List;
 
 public class StudentCreator implements CreatorFromRow<Student> {
