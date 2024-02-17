@@ -101,6 +101,12 @@
       <version>RELEASE</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.4.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -150,7 +156,6 @@
           </execution>
         </executions>
       </plugin>
-
 
       <!--
             We use SortPom to apply ordering and formatting to this pom.xml file.

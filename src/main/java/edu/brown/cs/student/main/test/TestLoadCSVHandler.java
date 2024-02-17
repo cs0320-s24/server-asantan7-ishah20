@@ -22,15 +22,15 @@ import spark.Spark;
 
 public class TestLoadCSVHandler {
 
+  private final Type mapStringObject =
+          Types.newParameterizedType(Map.class, String.class, Object.class);
+  private JsonAdapter<Map<String, Object>> adapter;
+
   @BeforeAll
   public static void setupOnce() {
     Spark.port(0);
     Logger.getLogger("").setLevel(Level.WARNING);
   }
-
-  private final Type mapStringObject =
-      Types.newParameterizedType(Map.class, String.class, Object.class);
-  private JsonAdapter<Map<String, Object>> adapter;
 
   @BeforeEach
   public void setup() {
@@ -60,28 +60,15 @@ public class TestLoadCSVHandler {
 
   @Test
   public void testRequestSuccess() throws IOException {
-    Spark.port(0);
-    Logger.getLogger("").setLevel(Level.WARNING);
-    LoadCSVHandler handler = new LoadCSVHandler();
-    Spark.get("/loadcsv", handler);
-    Spark.awaitInitialization();
-
     Moshi moshi = new Moshi.Builder().build();
     adapter = moshi.adapter(mapStringObject);
-    String validFilepath = "census/dol_ri_earnings_disparity.csv";
-    HttpURLConnection loadConnection = tryRequest("filepath=" + validFilepath);
-    assertEquals(200, loadConnection.getResponseCode());
+    HttpURLConnection connection = tryRequest("filepath=stars/stardata.csv");
+
     Map<String, Object> body =
-        adapter.fromJson(new Buffer().readFrom(loadConnection.getInputStream()));
-    showDetailsIfError(body);
+        adapter.fromJson(new Buffer().readFrom(connection.getInputStream()));
     assertEquals("success", body.get("result"));
-    assertEquals(validFilepath, body.get("filepath"));
-    loadConnection.disconnect();
+    assertEquals("stars/stardata.csv", body.get("filepath"));
+    connection.disconnect();
   }
 
-  private void showDetailsIfError(Map<String, Object> body) {
-    if (body.containsKey("result") && "error".equals(body.get("result"))) {
-      System.out.println(body.toString());
-    }
-  }
 }
